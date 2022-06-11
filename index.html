@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <Style>
+        body{
+            background:radial-gradient(red,yellow);
+            height:500px;
+        }
+        h1#clock{
+            color :white;
+            font-size: 150px;
+            text-align: center;
+        }
+    </Style>
+</head>
+<body>
+   <h1 id="clock">
+       05:30:12 AM
+   </h1>
+   <script>
+       //defination of the function
+       const clock = () => {
+        const date = new Date();
+        let hrs = date.getHours();
+        let mins = date.getMinutes();
+        let secs = date.getSeconds();
+        let day =date.getDay();
+        let monthday = date.getDate();
+        let month = date.getMonth();
+        let monthsArry = ["jan","feb","march","April","May","june","july","august","september","october","november","december"]
+        let year = date.getFullYear();
+        let period = "AM";
+
+        switch(day){
+            case 0:
+            day = "sunday"
+            break;
+            case 1:
+                day = "Monday"
+                break;
+                case 2:
+                day = "Tuesday"
+                break;
+                case 3:
+                    day = "Wednesday"
+                    break;
+                    case 4:
+                        day = "Thursday"
+                        break;
+                        case 5:
+                            day = "Friday"
+                            break;
+                            case 6:
+                                day = "saturday"
+        }
+
+        if(hrs ==0){
+            hrs = 12;
+        }
+        else if(hrs >= 12){
+            hrs -= 12;
+            period = "pm";
+        }
+        hrs = (hrs < 10) ? "0" + hrs : hrs;
+        mins = (mins < 10) ? "0" + mins : mins;
+        secs = (secs < 10) ? "0" + secs : secs;
+        let time = `${hrs} : ${mins} : ${secs} ${period}<br> ${day} ${monthday} ${monthsArry[month]} ${year}`;
+
+        document.getElementById("clock").innerHTML = time;
+        setTimeout(clock,1000);
+       }
+       //calling of the function
+       clock();
+   </script>
+</body>
+</html>
